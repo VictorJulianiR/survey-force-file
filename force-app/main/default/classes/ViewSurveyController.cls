@@ -169,6 +169,8 @@ global virtual with sharing class ViewSurveyController {
 		System.debug('anonymousAnswer:' + anonymousAnswer );
 
 		List <SurveyQuestionResponse__c> sqrList = new List<SurveyQuestionResponse__c>();
+		Map<String,Blob> fileUploadMap = new Map<String,Blob>();
+
 		try {
 
 			List<Schema.SobjectField> fields = new List<Schema.SobjectField>{
@@ -183,7 +185,6 @@ global virtual with sharing class ViewSurveyController {
 				System.debug('Question type ' + q.questionType);
 				System.debug('options ' + q.responseOptions);
 				System.debug('survey answer ' + q.selectedOption);
-
 
 				SurveyQuestionResponse__c sqr = new SurveyQuestionResponse__c();
 
@@ -225,6 +226,22 @@ global virtual with sharing class ViewSurveyController {
 						sqrList.add(sqr);
 					}
 				}
+
+				else if (q.renderFileUploadInput == true) {
+					if (q.required && String.isBlank(q.inputFileName)) {
+						Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Please fill out all required upload fields'));
+						return null;
+					}
+					if ( String.isNotBlank(q.inputFileName) ) {
+						sqr.Response__c = q.inputFileName;
+						sqr.Survey_Question__c = q.Id;
+						sqr.isFile__c = true;
+						sqrList.add(sqr);
+						fileUploadMap.put(q.inputFileName, q.inputFileBlob);
+						q.inputFileBlob = null;
+					}
+				}
+
 				System.debug('inserting response ' + sqr);
 			}
 			surveyTakerId = addSurveyTaker();
@@ -234,7 +251,8 @@ global virtual with sharing class ViewSurveyController {
 				{
 					sqr.SurveyTaker__c = surveyTakerId;
 				}
-				ViewSurveyControllerWithoutSharing.createSurveyQuestionResponse(sqrList);
+				ViewSurveyControllerWithoutSharing.createSurveyQuestionResponse(sqrList, fileUploadMap);
+
 				thankYouRendered = true;
 				System.debug('setting thankyourendered to true');
 			} else {

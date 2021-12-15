@@ -15,6 +15,8 @@ public inherited sharing class SFQuestion {
 	public String choices                     {get; set;}
 	public String selectedOption              {get; set;}
 	public String inputText                   {get; set;}
+	public Blob inputFileBlob				  {get; set;}
+	public String inputFileName				  {get; set;}
 	public List<String> selectedOptions       {get; set;}
 	public List<SelectOption> responseOptions {get; set;}
 	public Boolean required                   {get; set;}
@@ -24,6 +26,7 @@ public inherited sharing class SFQuestion {
 	public Boolean renderMultiCheckboxes      {get; set;}
 	public Boolean renderRadioHorizontal      {get; set;}
 	//public Boolean renderInput                {get; set;}
+	public Boolean renderFileUploadInput	  {get; set;}
 
 	public Boolean noData                     {get; set;}
 	public String noOfRowsForTextArea         {get; set;}
@@ -72,6 +75,10 @@ public inherited sharing class SFQuestion {
 			} else {
 				noOfRowsForTextArea = '5';
 			}
+		}
+		else if (sq.Type__c == 'File Upload'){
+			renderFileUploadInput = true;
+			inputFileName = '';
 		}
 	}
 

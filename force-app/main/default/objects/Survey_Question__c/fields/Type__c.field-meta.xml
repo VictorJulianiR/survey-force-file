@@ -35,6 +35,11 @@
                 <default>false</default>
                 <label>Free Text - Single Row Visible</label>
             </value>
+            <value>
+                <fullName>File Upload</fullName>
+                <default>false</default>
+                <label>File Upload</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

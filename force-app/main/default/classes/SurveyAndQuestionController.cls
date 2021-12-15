@@ -3,6 +3,7 @@ global virtual with sharing class SurveyAndQuestionController{
 	public Boolean  showRadioVertical               {get; set;}
 	public Boolean  showMultiCheckboxes                {get; set;}
 	public Boolean  showFreeText                   {get; set;}
+	public Boolean  showUploadFile                   {get; set;}
 	public Boolean  showRadioHorizontal                {get; set;}
 	public Boolean  showPicklist                    {get; set;}
 	public Id  questionReference                   {get; set;}
@@ -148,6 +149,7 @@ global virtual with sharing class SurveyAndQuestionController{
 		showRadioVertical    =        false;
 		showMultiCheckboxes  =        false;
 		showFreeText         =        false;
+		showUploadFile       =        false;
 		showRadioHorizontal  =        false;
 		showPicklist         =        false; // future functionality
 	}
@@ -167,6 +169,9 @@ global virtual with sharing class SurveyAndQuestionController{
 			}
 			when 'Single Select--Horizontal' {
 				showRadioHorizontal = true;
+			}
+			when 'File Upload'{
+				showUploadFile = true;
 			}
 			when else {
 				//future picklist functionality

@@ -17,7 +17,7 @@
     <script type="text/javascript">
         function confirmDelete(deleteId) {
 
-            var r = confirm($Label.LABS_SF_Confirm_Delete);
+            var r = confirm('{!$Label.LABS_SF_Confirm_Delete}');
             if (r) {
                 return true;
             } else {
@@ -123,17 +123,17 @@
 											</div>
 										</div>
 									</fieldset>
-									<apex:outputPanel layout="none" rendered="{!!showFreeText}">
-									<fieldset class="slds-form-element slds-form-element_compound slds-form-element_stacked">
-										<legend class="slds-form-element__legend slds-form-element__label">
-											<abbr class="slds-required" title="required">* </abbr>{!$ObjectType.Survey_Question__c.fields.Choices__c.label}</legend>
-										<div class="slds-form-element slds-form-element_stacked">
-											<label class="slds-form-element__label" for="inputOptions">{!$Label.LABS_SF_PleaseEnterTheList}</label>
-											<div class="slds-form-element__control">
-												<apex:inputTextArea styleClass="slds-textarea" cols="40" rows="3" id="inputOptions" value="{!theQuestion.Choices__c}" required="true" html-placeholder="{!$ObjectType.Survey_Question__c.fields.Choices__c.inlineHelpText}" />
+									<apex:outputPanel layout="none" rendered="{!!showFreeText && !showUploadFile }">
+										<fieldset class="slds-form-element slds-form-element_compound slds-form-element_stacked">
+											<legend class="slds-form-element__legend slds-form-element__label">
+												<abbr class="slds-required" title="required">* </abbr>{!$ObjectType.Survey_Question__c.fields.Choices__c.label}</legend>
+											<div class="slds-form-element slds-form-element_stacked">
+												<label class="slds-form-element__label" for="inputOptions">{!$Label.LABS_SF_PleaseEnterTheList}</label>
+												<div class="slds-form-element__control">
+													<apex:inputTextArea styleClass="slds-textarea" cols="40" rows="3" id="inputOptions" value="{!theQuestion.Choices__c}" required="true" html-placeholder="{!$ObjectType.Survey_Question__c.fields.Choices__c.inlineHelpText}" />
+												</div>
 											</div>
-										</div>
-									</fieldset>
+										</fieldset>
 									</apex:outputPanel>
 									<!-- <fieldset class="slds-form-element slds-form-element_compound slds-form-element_stacked">
 										<legend class="slds-form-element__legend slds-form-element__label">
