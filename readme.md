@@ -6,6 +6,11 @@
 - Assign "Survey Force - Admin" to anyone who will administer specific surveys
 - Assign "Survey Force - Guest" permission set to Force.com Site guest user (Complete steps on Force.com Site configuration below)
 
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
 For detailed SFDX installation instructions that do not require installing a package, see the [Installation Instructions](./INSTALLATION.md)
 
 ## General Surveys
